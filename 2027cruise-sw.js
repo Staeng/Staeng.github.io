@@ -1,7 +1,7 @@
 // 오프라인 대비 캐시 (2027 CRUISE 전용 — 이 페이지에만 적용되도록 좁은 scope로 등록됨)
 // 크루즈 선상은 인터넷이 끊기거나 느릴 수 있습니다.
 // 온라인이면 항상 최신을 받아오고, 통신이 끊겼을 때만 캐시된 일정을 보여줍니다.
-var CACHE = 'cruise2027-v3';
+var CACHE = 'cruise2027-v4';
 
 self.addEventListener('install', function (e) {
   e.waitUntil(
