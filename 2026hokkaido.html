@@ -118,8 +118,10 @@
   .stay .stay-name:active{ opacity: 0.6; }
 
   .schedule{ list-style: none; margin: 0; padding: 0; }
-  .schedule li{ position: relative; padding: 6px 0 6px 16px; font-size: 13.5px; color: var(--ink); line-height: 1.45; }
-  .schedule li::before{ content: ""; position: absolute; left: 0; top: 14px; width: 5px; height: 5px; border-radius: 50%; background: var(--ink-faint); }
+  .schedule li{ position: relative; display: flex; align-items: flex-start; gap: 10px; padding: 7px 0 7px 16px; font-size: 13.5px; color: var(--ink); line-height: 1.45; }
+  .schedule li::before{ content: ""; position: absolute; left: 0; top: 15px; width: 5px; height: 5px; border-radius: 50%; background: var(--ink-faint); }
+  .schedule li .li-time{ flex: 0 0 44px; font-weight: 800; font-size: 12.5px; color: var(--ink); padding-top: 1px; }
+  .schedule li .li-text{ flex: 1; min-width: 0; }
   .schedule li.flight{ font-weight: 700; }
   .schedule li.flight::before{ background: var(--warn); }
   .schedule li.transit::before{ background: var(--sapporo); }
@@ -484,22 +486,20 @@
             <a class="stay-name" href="https://www.google.com/maps/search/?api=1&query=Keikyu%20EX%20Hotel%20Sapporo%2C%20Japan" target="_blank" rel="noopener">Keikyu EX Hotel Sapporo</a> 체크인 (시간 여유있음)
           </div>
           <ul class="schedule">
-            <li class="note">05:15까지 인천공항 T1 도착</li>
-            <li class="flight">07:15 ICN(T1) 출발 <span class="tag">7C1501</span></li>
-            <li class="flight">10:00 CTS(T1) 도착 (2h45m)</li>
-            <li class="transit">신치토세공항 → 삿포로역: [JR] 약 37분</li>
-            <li>숙소 도착 (약 11:30), 체크인 전 짐 보관</li>
-            <li>삿포로역 아피아(Apia) B1F 칼디커피팜 — 커피·버터·파스타소스</li>
-            <li>같은 건물 라코레(LAKOLE) — 가방·생활잡화</li>
-            <li>로손(Lawson) 편의점 — 멘야사이미 감수 냉장 미소라멘</li>
-            <li>토리톤 스시 북8조광성점으로 이동, 웨이팅 등록 (인기점이라 대기 김)</li>
-            <li>대기시간 동안 삿포로맥주박물관 관람 (도보권)</li>
-            <li>점심: 토리톤 스시 (회전초밥, 웨이팅 끝나고 입장)</li>
-            <li class="note">대기 너무 길면 근처 다른 식당으로 변경 가능</li>
-            <li>치카호 지하보도로 오도리 이동: 몽벨 아카렌가테라스점 (삿포로 최대 매장) — 몬타베어 가방</li>
-            <li>숙소 체크인</li>
-            <li>저녁: 마사진 스스키노 본점 はなれ · 스스키노 양고기, 여유있게</li>
-            <li>디저트: 다누키 코미치(狸COMICHI, 타누키코지) — 멜론</li>
+            <li class="note"><span class="li-time">05:15</span><span class="li-text">까지 인천공항 T1 도착</span></li>
+            <li class="flight"><span class="li-time">07:15</span><span class="li-text">ICN(T1) 출발 <span class="tag">7C1501</span></span></li>
+            <li class="flight"><span class="li-time">10:00</span><span class="li-text">CTS(T1) 도착 (2h45m)</span></li>
+            <li class="transit"><span class="li-time"></span><span class="li-text">신치토세공항 → 삿포로역: [JR] 약 37분</span></li>
+            <li><span class="li-time">11:30</span><span class="li-text">숙소 도착(약), 체크인 전 짐 보관</span></li>
+            <li><span class="li-time"></span><span class="li-text">토리톤 스시 북8조광성점으로 바로 이동, 웨이팅 먼저 등록 (인기점이라 대기 김)</span></li>
+            <li><span class="li-time"></span><span class="li-text">대기시간 동안 삿포로맥주박물관 관람 (도보권)</span></li>
+            <li><span class="li-time"></span><span class="li-text">대기시간 동안 삿포로역 아피아(Apia) B1F 칼디커피팜·라코레(LAKOLE), 로손(Lawson) 편의점 쇼핑</span></li>
+            <li><span class="li-time"></span><span class="li-text">점심: 토리톤 스시 (회전초밥, 웨이팅 끝나고 입장)</span></li>
+            <li class="note"><span class="li-time"></span><span class="li-text">대기 너무 길면 근처 다른 식당으로 변경 가능</span></li>
+            <li><span class="li-time"></span><span class="li-text">치카호 지하보도로 오도리 이동: 몽벨 아카렌가테라스점 (삿포로 최대 매장) — 몬타베어 가방</span></li>
+            <li><span class="li-time"></span><span class="li-text">숙소 체크인</span></li>
+            <li><span class="li-time"></span><span class="li-text">저녁: 마사진 스스키노 본점 はなれ · 스스키노 양고기, 여유있게</span></li>
+            <li><span class="li-time"></span><span class="li-text">디저트: 다누키 코미치(狸COMICHI, 타누키코지) — 멜론</span></li>
           </ul>
           <button class="meal-btn" onclick="openMeal('day1','12.5 (토) · 삿포로')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 3v6a2 2 0 0 0 4 0V3M9 9v12M17 3c-1.5 3-1.5 6 0 8v10"/></svg>
@@ -530,13 +530,13 @@
             <a class="stay-name" href="https://www.google.com/maps/search/?api=1&query=Keikyu%20EX%20Hotel%20Sapporo%2C%20Japan" target="_blank" rel="noopener">Keikyu EX Hotel Sapporo</a>
           </div>
           <ul class="schedule">
-            <li>호텔 조식 후 지하철 도자이선 미야노사와역 이동 (약 20분)</li>
-            <li>시로이 코이비토 파크 — 쿠키 만들기 체험·초콜릿 공장 견학</li>
-            <li>점심: 수프카레 트레져 (오도리·스스키노 일대)</li>
-            <li>오후: 모유쿠(스탠다드 프로덕트·러쉬)·삿포로 파르코(오니츠카타이거)·휴먼메이드 쇼핑 (타누키코지·오도리)</li>
-            <li>쓰루하드럭·다이이치 슈퍼마켓·돈키호테·빅카메라/리카마운틴 쇼핑 (스스키노 방면)</li>
-            <li>저녁: 가니자(蟹座) 스스키노 · 게 무한리필</li>
-            <li>야식: 이자카야 一番星 きむら (스스키노, 도보/지하철)</li>
+            <li><span class="li-time"></span><span class="li-text">호텔 조식 후 지하철 도자이선 미야노사와역 이동 (약 20분)</span></li>
+            <li><span class="li-time"></span><span class="li-text">시로이 코이비토 파크 — 쿠키 만들기 체험·초콜릿 공장 견학</span></li>
+            <li><span class="li-time"></span><span class="li-text">점심: 수프카레 트레져 (오도리·스스키노 일대)</span></li>
+            <li><span class="li-time"></span><span class="li-text">오후: 모유쿠(스탠다드 프로덕트·러쉬)·삿포로 파르코(오니츠카타이거)·휴먼메이드 쇼핑 (타누키코지·오도리)</span></li>
+            <li><span class="li-time"></span><span class="li-text">쓰루하드럭·다이이치 슈퍼마켓·돈키호테·빅카메라/리카마운틴 쇼핑 (스스키노 방면)</span></li>
+            <li><span class="li-time"></span><span class="li-text">저녁: 가니자(蟹座) 스스키노 · 게 무한리필</span></li>
+            <li><span class="li-time"></span><span class="li-text">야식: 이자카야 一番星 きむら (스스키노, 도보/지하철)</span></li>
           </ul>
           <button class="meal-btn" onclick="openMeal('day2','12.6 (일) · 삿포로')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 3v6a2 2 0 0 0 4 0V3M9 9v12M17 3c-1.5 3-1.5 6 0 8v10"/></svg>
@@ -572,14 +572,14 @@
             <a class="stay-name" href="https://www.google.com/maps/search/?api=1&query=Otaru%20Korakuen%2C%20Japan" target="_blank" rel="noopener">Otaru Korakuen</a> 체크인 (16:00)
           </div>
           <ul class="schedule">
-            <li>삿포로 숙소 체크아웃</li>
-            <li>스스키노 스미레 오픈런 (줄서기 추천)</li>
-            <li>점심: 라멘 스미레 (스스키노점)</li>
-            <li class="transit">[JR] 삿포로 → 오타루 이동 (약 32분)</li>
-            <li>오타루역 코인락커에 짐 맡기고 시내 관광 (운하·사카이마치 거리)</li>
-            <li>사카이마치 거리에서 르타오 본점 디저트 (멜헨 교차로, 오타루역 도보 15분)</li>
-            <li>16:00 전 택시 또는 버스로 숙소 체크인</li>
-            <li>저녁: 숙소 석식 (2식 플랜 포함)</li>
+            <li><span class="li-time"></span><span class="li-text">삿포로 숙소 체크아웃</span></li>
+            <li><span class="li-time"></span><span class="li-text">스스키노 스미레 오픈런 (줄서기 추천)</span></li>
+            <li><span class="li-time"></span><span class="li-text">점심: 라멘 스미레 (스스키노점)</span></li>
+            <li class="transit"><span class="li-time"></span><span class="li-text">[JR] 삿포로 → 오타루 이동 (약 32분)</span></li>
+            <li><span class="li-time"></span><span class="li-text">오타루역 코인락커에 짐 맡기고 시내 관광 (운하·사카이마치 거리)</span></li>
+            <li><span class="li-time"></span><span class="li-text">사카이마치 거리에서 르타오 본점 디저트 (멜헨 교차로, 오타루역 도보 15분)</span></li>
+            <li><span class="li-time">16:00</span><span class="li-text">전 택시 또는 버스로 숙소 체크인</span></li>
+            <li><span class="li-time"></span><span class="li-text">저녁: 숙소 석식 (2식 플랜 포함)</span></li>
           </ul>
           <button class="meal-btn" onclick="openMeal('day3','12.7 (월) · 삿포로 → 오타루')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 3v6a2 2 0 0 0 4 0V3M9 9v12M17 3c-1.5 3-1.5 6 0 8v10"/></svg>
@@ -610,15 +610,15 @@
             <a class="stay-name" href="https://www.google.com/maps/search/?api=1&query=Otaru%20Korakuen%2C%20Japan" target="_blank" rel="noopener">Otaru Korakuen</a> 체크아웃
           </div>
           <ul class="schedule">
-            <li>조식: 숙소 조식 (2식 플랜 포함)</li>
-            <li class="note">10:00 체크아웃, 10:30 숙소 송영버스 탑승</li>
-            <li class="transit">10:30 송영버스로 오타루역 이동 → [JR] 신치토세공항行 직행 (약 70~80분)</li>
-            <li class="note">신치토세공항 도착 후 16:00 항공편까지 여유 있음</li>
-            <li>로이스 초콜릿월드 (터미널 3F 스마일로드) — 무료, 초콜릿 공장 견학·베이커리</li>
-            <li>점심: 공항에서 (부타동 메이진 또는 五十七番寿し 다치구이스시)</li>
-            <li class="flight">16:00 CTS 출발 <span class="tag">7C1504</span></li>
-            <li class="flight">19:25 ICN(T1) 도착 (3h25m)</li>
-            <li class="note">기내식 없음 (제주항공), 간식 미리 챙기기</li>
+            <li><span class="li-time"></span><span class="li-text">조식: 숙소 조식 (2식 플랜 포함)</span></li>
+            <li class="note"><span class="li-time">10:00</span><span class="li-text">체크아웃, 10:30 숙소 송영버스 탑승</span></li>
+            <li class="transit"><span class="li-time">10:30</span><span class="li-text">송영버스로 오타루역 이동 → [JR] 신치토세공항行 직행 (약 70~80분)</span></li>
+            <li class="note"><span class="li-time"></span><span class="li-text">신치토세공항 도착 후 16:00 항공편까지 여유 있음</span></li>
+            <li><span class="li-time"></span><span class="li-text">로이스 초콜릿월드 (터미널 3F 스마일로드) — 무료, 초콜릿 공장 견학·베이커리</span></li>
+            <li><span class="li-time"></span><span class="li-text">점심: 공항에서 (부타동 메이진 또는 五十七番寿し 다치구이스시)</span></li>
+            <li class="flight"><span class="li-time">16:00</span><span class="li-text">CTS 출발 <span class="tag">7C1504</span></span></li>
+            <li class="flight"><span class="li-time">19:25</span><span class="li-text">ICN(T1) 도착 (3h25m)</span></li>
+            <li class="note"><span class="li-time"></span><span class="li-text">기내식 없음 (제주항공), 간식 미리 챙기기</span></li>
           </ul>
           <button class="meal-btn" onclick="openMeal('day4','12.8 (화) · 오타루 → 귀국')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 3v6a2 2 0 0 0 4 0V3M9 9v12M17 3c-1.5 3-1.5 6 0 8v10"/></svg>
