@@ -188,7 +188,8 @@
   .pack-item.done span{ color: var(--ink-faint); text-decoration: line-through; }
   .pack-item .jp{ display: block; margin-top: 2px; font-size: 10.5px; font-weight: 600; color: var(--accent); }
   .shop-store{ margin-bottom: 26px; }
-  .shop-store-h{ font-family: 'Fraunces', serif; font-weight: 700; font-size: 15px; color: var(--ink); margin: 0 0 6px; padding-bottom: 8px; border-bottom: 2px solid var(--sapporo-soft); }
+  .shop-store-h{ font-family: 'Fraunces', serif; font-weight: 700; font-size: 15px; color: var(--ink); margin: 0 0 6px; padding-bottom: 8px; border-bottom: 2px solid var(--sapporo-soft); display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .shop-day-badge{ font-family: 'Noto Sans KR', sans-serif; font-weight: 600; font-size: 10.5px; color: var(--sapporo); background: var(--sapporo-soft); border-radius: 999px; padding: 2px 8px; white-space: nowrap; }
   .shop-cat{ margin: 14px 0 0; }
   .shop-cat-h{ display: flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 800; color: var(--sapporo); margin: 0 0 2px; }
   .shop-cat-h::before{ content: '－'; color: var(--ink-faint); font-weight: 600; }
@@ -318,7 +319,7 @@
   .budget-day-head{ display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px; }
   .budget-day-head .b-day{ font-family: 'Fraunces', serif; font-weight: 600; font-size: 16px; color: var(--ink); }
   .budget-day-head .b-date{ font-size: 11.5px; color: var(--ink-soft); font-weight: 600; }
-  .cost-row{ display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; padding: 6px 0; font-size: 13px; border-top: 1px dashed var(--line); }
+  .cost-row{ display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 10px; padding: 6px 0; font-size: 13px; border-top: 1px dashed var(--line); }
   .cost-row:first-of-type{ border-top: none; }
   .cost-row .cost-label{ color: var(--ink-soft); font-weight: 600; }
   .cost-row .cost-label small{ display:block; font-size: 10.5px; color: var(--ink-faint); font-weight: 500; margin-top: 1px; }
@@ -488,11 +489,13 @@
             <li class="flight">10:00 CTS(T1) 도착 (2h45m)</li>
             <li class="transit">신치토세공항 → 삿포로역: [JR] 약 37분</li>
             <li>숙소 도착 (약 11:30), 체크인 전 짐 보관</li>
-            <li>삿포로역 아피아(Apia) B1F 칼디커피팜 — 캡슐커피·발효버터, 같은 건물 라코레(LAKOLE) — 가방·생활잡화</li>
+            <li>삿포로역 아피아(Apia) B1F 칼디커피팜 — 커피·버터·파스타소스</li>
+            <li>같은 건물 라코레(LAKOLE) — 가방·생활잡화</li>
             <li>로손(Lawson) 편의점 — 멘야사이미 감수 냉장 미소라멘</li>
             <li>토리톤 스시 북8조광성점으로 이동, 웨이팅 등록 (인기점이라 대기 김)</li>
             <li>대기시간 동안 삿포로맥주박물관 관람 (도보권)</li>
             <li>점심: 토리톤 스시 (회전초밥, 웨이팅 끝나고 입장)</li>
+            <li class="note">대기 너무 길면 근처 다른 식당으로 변경 가능</li>
             <li>치카호 지하보도로 오도리 이동: 몽벨 아카렌가테라스점 (삿포로 최대 매장) — 몬타베어 가방</li>
             <li>숙소 체크인</li>
             <li>저녁: 마사진 스스키노 본점 はなれ · 스스키노 양고기, 여유있게</li>
@@ -529,8 +532,9 @@
           <ul class="schedule">
             <li>호텔 조식 후 지하철 도자이선 미야노사와역 이동 (약 20분)</li>
             <li>시로이 코이비토 파크 — 쿠키 만들기 체험·초콜릿 공장 견학</li>
-            <li>점심: 미정 (파크 내 카페 또는 삿포로 시내 복귀 후, 후보: 이っぺ코っぺ 스스키노 돈카츠카레)</li>
-            <li>오후: 삿포로 시내 자유 쇼핑 (타누키코지·오도리 방면)</li>
+            <li>점심: 수프카레 트레져 (오도리·스스키노 일대)</li>
+            <li>오후: 모유쿠(스탠다드 프로덕트·러쉬)·삿포로 파르코(오니츠카타이거)·휴먼메이드 쇼핑 (타누키코지·오도리)</li>
+            <li>쓰루하드럭·다이이치 슈퍼마켓·돈키호테·빅카메라/리카마운틴 쇼핑 (스스키노 방면)</li>
             <li>저녁: 가니자(蟹座) 스스키노 · 게 무한리필</li>
             <li>야식: 이자카야 一番星 きむら (스스키노, 도보/지하철)</li>
           </ul>
@@ -690,10 +694,10 @@
 
     <div class="budget-summary">
       <div class="total-label">Total Budget</div>
-      <div class="total-amount">₩ 3,758,103</div>
+      <div class="total-amount">₩ 3,738,103</div>
       <div class="split">
         <div><div class="k">지출완료</div><div class="v paid">₩ 2,752,023</div></div>
-        <div><div class="k">지출예정</div><div class="v planned">₩ 1,006,080</div></div>
+        <div><div class="k">지출예정</div><div class="v planned">₩ 986,080</div></div>
       </div>
     </div>
     <p class="budget-note">파란색 = 이미 지출한 항목 · 빨간색 = 지출 예정(예산) 항목입니다.</p>
@@ -706,9 +710,8 @@
       <div class="budget-day-head"><span class="b-day">Day 01</span><span class="b-date">12.5(토) · 인천 → 삿포로</span></div>
       <div class="cost-row"><div class="cost-label">NOL(항공)<small>7C1501/7C1504 왕복 항공권</small></div><div class="cost-amount paid">₩1,624,560</div></div>
       <div class="cost-row"><div class="cost-label">[JR] 공항 → 삿포로역<small>¥2,300</small></div><div class="cost-amount paid">₩21,045</div></div>
-      <div class="cost-row"><div class="cost-label">점심 · 수프카레 트레져<small>오도리, 구글평점 4.4</small></div><div class="cost-amount planned">₩30,000</div></div>
-      <div class="cost-row"><div class="cost-label">니조시장·스스키노 쇼핑<small>어림잡은 금액, 조정 가능</small></div><div class="cost-amount planned">₩50,000</div></div>
       <div class="cost-row"><div class="cost-label">삿포로맥주박물관<small>전시관 무료입장</small></div><div class="cost-amount muted">-</div></div>
+      <div class="cost-row"><div class="cost-label">점심 · 토리톤 스시<small>회전초밥</small></div><div class="cost-amount planned">₩30,000</div></div>
       <div class="cost-row"><div class="cost-label">저녁 · 마사진 (はなれ)<small>스스키노 양고기, 구글평점 4.9</small></div><div class="cost-amount planned">₩100,000</div></div>
       <div class="cost-row"><div class="cost-label">[지하철] 스스키노 왕복<small>¥3,000 (다회 이용)</small></div><div class="cost-amount paid">₩27,450</div></div>
       <div class="cost-row"><div class="cost-label">숙소 · Keikyu EX Hotel Sapporo<small>2박 · 12/1 자동결제 예정</small></div><div class="cost-amount planned">₩366,080</div></div>
@@ -717,7 +720,8 @@
     <div class="budget-day">
       <div class="budget-day-head"><span class="b-day">Day 02</span><span class="b-date">12.6(일) · 삿포로</span></div>
       <div class="cost-row"><div class="cost-label">시로이 코이비토 파크 입장료<small>성인 ¥800×2 + 지우 ¥400</small></div><div class="cost-amount planned">₩20,000</div></div>
-      <div class="cost-row"><div class="cost-label">점심 · 미정</div><div class="cost-amount planned">₩50,000</div></div>
+      <div class="cost-row"><div class="cost-label">점심 · 수프카레 트레져<small>오도리, 구글평점 4.4</small></div><div class="cost-amount planned">₩30,000</div></div>
+      <div class="cost-row"><div class="cost-label">오후 쇼핑<small>모유쿠·파르코·휴먼메이드·쓰루하드럭·다이이치·돈키호테·빅카메라, 어림잡은 금액</small></div><div class="cost-amount planned">₩50,000</div></div>
       <div class="cost-row"><div class="cost-label">저녁 · 가니자(蟹座) 스스키노<small>게·샤브샤브 무한리필 코스 ¥10,000~</small></div><div class="cost-amount planned">₩250,000</div></div>
       <div class="cost-row"><div class="cost-label">야식 · 一番星 きむら<small>이자카야, 스스키노, 구글평점 4.5</small></div><div class="cost-amount planned">₩40,000</div></div>
     </div>
@@ -960,11 +964,8 @@
   });
 
   const mealData = {
-    day1: { b: "-", l: { name: "수프카레 트레져 (SOUP CURRY TREASURE)", place: "北海道札幌市中央区南2条西1丁目8番地2 アスカビル1F", desc: "구글평점 4.4 · 오도리·스스키노 일대" }, d: { name: "마사진 스스키노 본점 はなれ", place: "北海道札幌市中央区南4条西5丁目7-1", desc: "구글평점 4.9 · 스스키노 양고기(징기스칸) 전문점" } },
-    day2: { b: "호텔 조식", l: [
-      { name: "미정", place: "白い恋人パーク, 北海道札幌市西区宮の沢2条2丁目11-36", desc: "파크 내 카페 또는 삿포로 시내 복귀 후 · 장소 미정" },
-      { name: "이っぺ코っぺ 스스키노점 (돈카츠 카레, 후보)", place: "とんかつ檍のカレー屋いっぺこっぺ すすきの店, 北海道札幌市中央区南7条西5丁目1-11", desc: "야후지도 평점 3.83(리뷰 10건) · 스스키노역 도보 6분 · 대표메뉴 로스카츠카레" }
-    ], d: { name: "가니자(蟹座) 스스키노", place: "北海道札幌市中央区南四条西2-10-6 南4西2ビル9F", desc: "구글평점 4.4 · 스스키노 · 게·샤브샤브 무한리필" }, s: { name: "이자카야 一番星 きむら", place: "北海道札幌市中央区南6条西3 ススキノ中央ビル9階", desc: "구글평점 4.5 · 스스키노 · 평일 18:00~익일 03:00" } },
+    day1: { b: "-", l: { name: "토리톤 스시 (북8조광성점)", place: "北海道札幌市東区北8条東5丁目19-1", desc: "인기 회전초밥 · 웨이팅 등록 후 삿포로맥주박물관 관람하며 대기" }, d: { name: "마사진 스스키노 본점 はなれ", place: "北海道札幌市中央区南4条西5丁目7-1", desc: "구글평점 4.9 · 스스키노 양고기(징기스칸) 전문점" } },
+    day2: { b: "호텔 조식", l: { name: "수프카레 트레져 (SOUP CURRY TREASURE)", place: "北海道札幌市中央区南2条西1丁目8番地2 アスカビル1F", desc: "구글평점 4.4 · 오도리·스스키노 일대" }, d: { name: "가니자(蟹座) 스스키노", place: "北海道札幌市中央区南四条西2-10-6 南4西2ビル9F", desc: "구글평점 4.4 · 스스키노 · 게·샤브샤브 무한리필" }, s: { name: "이자카야 一番星 きむら", place: "北海道札幌市中央区南6条西3 ススキノ中央ビル9階", desc: "구글평점 4.5 · 스스키노 · 평일 18:00~익일 03:00" } },
     day3: { b: "호텔 조식", l: { name: "라멘 스미레 (스스키노점)", place: "北海道札幌市中央区南3条西3-9-2", desc: "삿포로 대표 미소라멘 · 오픈런 추천" }, d: "숙소 석식 (2식 플랜 포함)" },
     day4: { b: "숙소 조식 (2식 플랜 포함)", l: [
       { name: "부타동 메이진 (신치토세공항점)", place: "豚丼名人 新千歳空港店, New Chitose Airport, Japan", desc: "40년 전통 부타동 전문점 · 국내선청사 3층 그루메월드" },
@@ -1356,24 +1357,28 @@
         {label:'신치토세공항', place:'New Chitose Airport, Japan', exact:false},
         {label:'삿포로역', place:'Sapporo Station, Japan', exact:false},
         {label:'Keikyu EX Hotel Sapporo (짐 보관)', place:'Keikyu EX Hotel Sapporo, Japan', exact:false},
-        {label:'수프카레 트레져 (점심, 오도리)', place:'北海道札幌市中央区南2条西1丁目8番地2 アスカビル1F', exact:true},
-        {label:'니조시장·스스키노 (구경·쇼핑)', place:'Nijo Market, Japan', exact:false},
-        {label:'삿포로맥주박물관', place:'Sapporo Beer Museum, Japan', exact:false},
+        {label:'칼디·라코레 (아피아 쇼핑)', place:'Apia, Sapporo, Japan', exact:false},
+        {label:'토리톤 스시 (웨이팅 등록)', place:'北海道札幌市東区北8条東5丁目19-1', exact:true},
+        {label:'삿포로맥주박물관 (대기 중 관람)', place:'Sapporo Beer Museum, Japan', exact:false},
+        {label:'토리톤 스시 (점심)', place:'北海道札幌市東区北8条東5丁目19-1', exact:true},
+        {label:'몽벨 아카렌가테라스 (쇼핑)', place:'Mont-bell Akarenga Terrace, Sapporo, Japan', exact:false},
         {label:'Keikyu EX Hotel Sapporo (체크인)', place:'Keikyu EX Hotel Sapporo, Japan', exact:false},
         {label:'마사진 はなれ (저녁, 스스키노)', place:'北海道札幌市中央区南4条西5丁目7-1', exact:true},
         {label:'숙소 (복귀)', place:'Keikyu EX Hotel Sapporo, Japan', exact:false}
       ],
-      connectors:[{icon:'transit',text:'JR · 약 37분'},{icon:'transit',text:'도보'},{icon:'transit',text:'도보/지하철'},{icon:'transit',text:'도보'},{icon:'transit',text:'도보/지하철'},{icon:'transit',text:'버스·도보 복귀'},{icon:'transit',text:'지하철 스스키노行'},{icon:'transit',text:'지하철 복귀'}],
+      connectors:[{icon:'transit',text:'JR · 약 37분'},{icon:'transit',text:'도보'},{icon:'transit',text:'도보'},{icon:'transit',text:'도보/지하철'},{icon:'transit',text:'도보권'},{icon:'transit',text:'도보'},{icon:'transit',text:'치카호 지하보도'},{icon:'transit',text:'도보'},{icon:'transit',text:'지하철 스스키노行'},{icon:'transit',text:'지하철 복귀'}],
       map: mapFrame(['New Chitose Airport, Japan','Sapporo Station, Japan','Sapporo Beer Museum, Japan','Keikyu EX Hotel Sapporo, Japan']) },
     { day:'Day 02', date:'12.6(일)', seg:'seg-sapporo', stops:[
         {label:'삿포로 숙소', place:'Keikyu EX Hotel Sapporo, Japan', exact:false},
         {label:'시로이 코이비토 파크 (오전)', place:'白い恋人パーク, 北海道札幌市西区宮の沢2条2丁目11-36', exact:true},
-        {label:'삿포로 시내 쇼핑 (타누키코지·오도리)', place:'Tanukikoji Shopping Street, Sapporo, Japan', exact:false},
+        {label:'수프카레 트레져 (점심, 오도리)', place:'北海道札幌市中央区南2条西1丁目8番地2 アスカビル1F', exact:true},
+        {label:'모유쿠·파르코·휴먼메이드 쇼핑 (타누키코지·오도리)', place:'Tanukikoji Shopping Street, Sapporo, Japan', exact:false},
+        {label:'쓰루하드럭·다이이치·돈키호테·빅카메라 쇼핑 (스스키노)', place:'Susukino, Sapporo, Japan', exact:false},
         {label:'가니자(蟹座) 스스키노 (저녁)', place:'北海道札幌市中央区南四条西2-10-6 南4西2ビル9F', exact:true},
         {label:'一番星 きむら (야식, 스스키노)', place:'北海道札幌市中央区南6条西3 ススキノ中央ビル9階', exact:true},
         {label:'숙소 (최종 복귀)', place:'Keikyu EX Hotel Sapporo, Japan', exact:false}
       ],
-      connectors:[{icon:'transit',text:'지하철 미야노사와行 약 20분'},{icon:'transit',text:'지하철 오도리行 약 20분'},{icon:'transit',text:'도보'},{icon:'transit',text:'지하철 스스키노行'},{icon:'transit',text:'지하철 복귀'}],
+      connectors:[{icon:'transit',text:'지하철 미야노사와行 약 20분'},{icon:'transit',text:'지하철 오도리行 약 20분'},{icon:'transit',text:'도보'},{icon:'transit',text:'도보'},{icon:'transit',text:'도보/지하철'},{icon:'transit',text:'지하철 스스키노行'},{icon:'transit',text:'지하철 복귀'}],
       map: mapFrame(['Sapporo, Japan']) },
     { day:'Day 03', date:'12.7(월)', seg:'seg-otaru', stops:[
         {label:'삿포로 숙소 체크아웃', place:'Keikyu EX Hotel Sapporo, Japan', exact:false},
@@ -1465,7 +1470,7 @@
     ]}
   ];
   const shopData = [
-    { store:'👜 모유쿠 삿포로 (南2条西3丁目)', groups:[
+    { store:'👜 모유쿠 삿포로 (南2条西3丁目)', day:'Day 2', groups:[
       { cat:'스탠다드 프로덕트 (2F)', items:[
         '<b>스탠다드 프로덕트</b> 가방<span class="jp">スタンダードプロダクツ バッグ · ¥1,100</span>',
         '<b>스탠다드 프로덕트</b> 수세미<span class="jp">スタンダードプロダクツ スポンジ · ¥330</span>',
@@ -1477,22 +1482,22 @@
         '<b>러쉬(LUSH)</b> 팩 — 한국보다 30~40% 저렴<span class="jp">ラッシュ フェイスマスク · ¥1,390</span>'
       ]}
     ]},
-    { store:'👟 삿포로 파르코 (南1条西3丁目)', groups:[
+    { store:'👟 삿포로 파르코 (南1条西3丁目)', day:'Day 2', groups:[
       { cat:'오니츠카타이거', items:[
         '신발<span class="jp">オニツカタイガー シューズ · ¥8,000~15,000</span>'
       ]}
     ]},
-    { store:'🧢 휴먼메이드 삿포로 (더 낫 삿포로 호텔 1F, 南3条西3丁目)', groups:[
+    { store:'🧢 휴먼메이드 삿포로 (더 낫 삿포로 호텔 1F, 南3条西3丁目)', day:'Day 2', groups:[
       { cat:'휴먼메이드(HUMAN MADE)', items:[
         '모자<span class="jp">ヒューマンメイド キャップ · ¥6,000~9,000</span>'
       ]}
     ]},
-    { store:'🏔 몽벨 아카렌가테라스점 (北2条西4丁目, 치카호 직결)', groups:[
+    { store:'🏔 몽벨 아카렌가테라스점 (北2条西4丁目, 치카호 직결)', day:'Day 1', groups:[
       { cat:'몽벨(mont-bell)', items:[
         '몬타베어 가방<span class="jp">モンベル モンタベア バッグ · ¥3,300</span>'
       ]}
     ]},
-    { store:'☕ 칼디커피팜 (삿포로역 아피아 B1F)', groups:[
+    { store:'☕ 칼디커피팜 (삿포로역 아피아 B1F)', day:'Day 1', groups:[
       { cat:'식품', items:[
         '캡슐커피<span class="jp">カルディコーヒーファーム カプセルコーヒー · ¥700</span>',
         '<b>よつ葉 요츠바</b> 홋카이도 발효버터<span class="jp">北海道 発酵バター · ¥883</span>',
@@ -1501,15 +1506,15 @@
         '<b>KALDI</b> 세토우치 에비&레몬 파스타소스 (1인분, 미니파우치)<span class="jp">瀬戸内海老レモン パスタソース · ¥398~425</span>',
         '<b>もへじ 모헤지</b> 사라다노 우마타레 (참깨마늘 간장 드레싱, 연간판매 1위)<span class="jp">もへじ サラダの旨たれ 290ml · ¥448</span>',
         '사케멘타이 스프레드 (연어+명란, 밥에 비벼먹기)<span class="jp">さけめんたい 100g · ¥528</span>',
-        '<b>KALDI</b> 테바카라아게 시즈닝 (전자레인지 7분, 닭날개 별도 구입 필요)<span class="jp">手羽唐揚げ あらびきペッパー味 · ¥500전후</span>'
+        '<b>KALDI</b> 테바카라아게 시즈닝 (전자레인지 7분, 닭날개 별도 구입 필요, 가격 미확인)<span class="jp">手羽唐揚げ あらびきペッパー味</span>'
       ]}
     ]},
-    { store:'👜 라코레(LAKOLE) 삿포로 아피아점 (아피아 패션워크 B1F, 칼디커피팜과 같은 건물)', groups:[
+    { store:'👜 라코레(LAKOLE) 삿포로 아피아점 (아피아 패션워크 B1F, 칼디커피팜과 같은 건물)', day:'Day 1', groups:[
       { cat:'라코레(LAKOLE)', items:[
         '가방·생활잡화 (실용적인 디자인 라이프스타일 브랜드)<span class="jp">ラコレ · ¥2,000~5,000</span>'
       ]}
     ]},
-    { store:'🏪 로손(Lawson) 편의점 (호텔 1F에도 있음)', groups:[
+    { store:'🏪 로손(Lawson) 편의점 (호텔 1F에도 있음)', day:'Day 1', groups:[
       { cat:'즉석식품', items:[
         '멘야사이미 감수 냉장 미소라멘 (삿포로 인기 미소라멘 맛집)<span class="jp">麺屋彩未監修 札幌味噌らーめん · ¥650</span>',
         '<b>iSDG 아이에스디지</b> 컵라면 마라탕 (고구마당면, 짠맛 강해 국물은 남기는 걸 추천)<span class="jp">麻辣湯(マーラータン) · ¥300</span>'
@@ -1526,7 +1531,7 @@
         '수플레 푸딩 (커피맛)<span class="jp">スフレ・プリン · ¥360</span>'
       ]}
     ]},
-    { store:'🛒 다이이치 슈퍼마켓 (스스키노역 바로 위, COCONO SUSUKINO B2F)', groups:[
+    { store:'🛒 다이이치 슈퍼마켓 (스스키노역 바로 위, COCONO SUSUKINO B2F)', day:'Day 2', groups:[
       { cat:'식품·조미료', items:[
         '<b>SHOWA 쇼와</b> 안 튀기는 야키텐푸라가루 (오븐·팬으로 바삭하게)<span class="jp">もう揚げない！焼き天ぷらの素 · ¥158</span>',
         '세토우치 레몬맛 오징어튀김과자<span class="jp">イカフライ 瀬戸内れもん味 · ¥348</span>',
@@ -1540,7 +1545,7 @@
         '<b>麺屋彩未 멘야사이미</b> 나마라멘 밀키트 (2인분, 수프 포함)<span class="jp">麺屋彩未 なまラーメン 味噌 · 2人前</span>'
       ]}
     ]},
-    { store:'🏪 쓰루하드럭', groups:[
+    { store:'🏪 쓰루하드럭 (스킨케어·뷰티·상비약)', day:'Day 2', groups:[
       { cat:'스킨케어·뷰티', items:[
         '<b>毛穴撫子 케아나 나데시코</b> 모공 숨바꼭질 프라이머<span class="jp">毛穴撫子 毛穴かくれんぼプライマー · ¥1,200</span>',
         '<b>カラミ 카라미</b> 메이크업 킵 스퀘어 에어팩 (칼라민 파우더 시트팩)<span class="jp">カラミ メイクキープ スクエアエアパック · ¥600</span>',
@@ -1567,7 +1572,9 @@
         '<b>第一三共 다이이치산쿄</b> 록소닌EX 테이프 (어깨·관절 파스, 록소프로펜 성분)<span class="jp">ロキソニンEXテープ · ¥1,980</span>',
         '<b>MegRhythm 메구리즘</b> 다리에 붙이는 탄산 젤팩<span class="jp">めぐりズム 足に貼る炭酸ジェルパック · ¥580</span>',
         '<b>第一三共 다이이치산쿄</b> 트란시노 화이트C 프리미엄 90정 (기미·주근깨, 소용량)<span class="jp">トランシーノ ホワイトCプレミアム 90錠 · ¥2,310</span>'
-      ]},
+      ]}
+    ]},
+    { store:'🏪 쓰루하드럭 (생활·방한)', day:'Day 2', groups:[
       { cat:'생활·세탁', items:[
         '<b>アタックZERO 아타크 제로</b> 퍼펙트스틱 부야오시 (탄산파우더, 실내건조용)<span class="jp">アタックZERO パーフェクトスティック 部屋干し · ¥400</span>',
         '<b>ウタマロ石鹸 우타마로 비누</b><span class="jp">¥150</span>',
@@ -1586,7 +1593,7 @@
         '<b>ゴリラ 고릴라노</b> 호카론 보온양말<span class="jp">ゴリラのホカロン(履く) · ¥2,000</span>'
       ]}
     ]},
-    { store:'🎌 돈키호테 (면세 최저한도만)', groups:[
+    { store:'🎌 돈키호테 (면세 최저한도만)', day:'Day 2', groups:[
       { cat:'간식·조미료', items:[
         '<b>ドド 도도</b> 고마닌니쿠 참깨마늘 시즈닝<span class="jp">ごまにんにく · ¥399</span>',
         '<b>チョコっと 쵸콧토</b> 야키이모 쫀득 고구마 (전자레인지용)<span class="jp">ちょこっと焼き芋 · ¥500</span>',
@@ -1594,13 +1601,13 @@
         '티라미수 초콜릿<span class="jp">ティラミスチョコレート · ¥999</span>'
       ]}
     ]},
-    { store:'🍶 빅카메라 삿포로역점 또는 리카마운틴 스스키노5조도리점', groups:[
+    { store:'🍶 빅카메라 삿포로역점 또는 리카마운틴 스스키노5조도리점', day:'Day 2', groups:[
       { cat:'주류', items:[
         '홋카이도 사케<span class="jp">北海道 日本酒 · ¥1,500~3,000</span>',
         '위스키<span class="jp">ウイスキー · ¥3,000~</span>'
       ]}
     ]},
-    { store:'🏪 세븐일레븐 (아무 지점)', groups:[
+    { store:'🏪 세븐일레븐 (아무 지점)', day:'상시', groups:[
       { cat:'간식', items:[
         '고구마맛탕<span class="jp">大学いも · ¥300</span>'
       ]}
@@ -1658,7 +1665,7 @@
     const done = shopLoad();
     let html = '';
     shopData.forEach(store => {
-      html += '<div class="shop-store"><h3 class="shop-store-h">' + store.store + '</h3>';
+      html += '<div class="shop-store"><h3 class="shop-store-h">' + store.store + (store.day ? ' <span class="shop-day-badge">' + store.day + '</span>' : '') + '</h3>';
       store.groups.forEach(g => {
         html += '<div class="shop-cat"><h4 class="shop-cat-h">' + g.cat + '</h4>';
         g.items.forEach(it => {
