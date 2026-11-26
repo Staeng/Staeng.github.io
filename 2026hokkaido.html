@@ -606,7 +606,8 @@
             <li class="cont"><span class="li-time"></span><span class="li-text">류게츠 오타루토점 — 소프트크림</span></li>
             <li class="cont"><span class="li-time"></span><span class="li-text">시와와 오타루점 — 말차 디저트</span></li>
             <li class="cont"><span class="li-time"></span><span class="li-text">르타오 본점 디저트 (멜헨 교차로)</span></li>
-            <li><span class="li-time">16:00</span><span class="li-text">전 택시·버스로 숙소 체크인</span></li>
+            <li><span class="li-time">16:00</span><span class="li-text">전 택시로 숙소 체크인</span></li>
+            <li class="cont"><span class="li-time"></span><span class="li-text">체크인 때 내일 송영버스 예약 (10:00 또는 10:45)</span></li>
             <li><span class="li-time"></span><span class="li-text">저녁: 숙소 석식 (2식 플랜 포함)</span></li>
           </ul>
           <button class="meal-btn" onclick="openMeal('day3','12.7 (월) · 삿포로 → 오타루')">
@@ -643,8 +644,8 @@
           </div>
           <ul class="schedule">
             <li><span class="li-time"></span><span class="li-text">조식: 숙소 조식 (2식 플랜 포함)</span></li>
-            <li class="note"><span class="li-time">10:00</span><span class="li-text">체크아웃, 10:30 숙소 송영버스 탑승</span></li>
-            <li class="transit cont"><span class="li-time">10:30</span><span class="li-text">송영버스→오타루역, JR 신치토세공항行 (70~80분)</span></li>
+            <li class="note"><span class="li-time">10:00</span><span class="li-text">체크아웃, 숙소 송영버스 탑승 (10:00 또는 10:45)</span></li>
+            <li class="transit cont"><span class="li-time"></span><span class="li-text">송영버스→오타루칫코역, JR 신치토세공항行 (70~80분)</span></li>
             <li class="note cont"><span class="li-time"></span><span class="li-text">공항 도착, 16:00 항공편까지 여유</span></li>
             <li><span class="li-time"></span><span class="li-text">로이스 초콜릿월드 (3F, 무료 견학)</span></li>
             <li class="cont"><span class="li-time"></span><span class="li-text">점심: 부타동 메이진·고주나나반스시·스프카레 GARAKU 중 선택</span></li>
@@ -686,7 +687,7 @@
       <div class="map-legend">
         <span><span class="legend-line"></span> JR</span>
       </div>
-      <p style="margin:12px 8px 0; font-size:11.5px; color:var(--ink-soft); line-height:1.5;">공항↔오타루는 항상 삿포로를 거쳐요 (직행 노선 없음). 오타루 구간은 JR 외에 체크인 때 택시 또는 버스(오타루역→숙소), 체크아웃 때 10:30 숙소 송영버스(숙소→오타루역)를 이용합니다.</p>
+      <p style="margin:12px 8px 0; font-size:11.5px; color:var(--ink-soft); line-height:1.5;">공항↔오타루는 항상 삿포로를 거쳐요 (직행 노선 없음). 오타루 구간은 JR 외에 체크인 때 택시(오타루역→숙소), 체크아웃 때 숙소 송영버스(숙소→오타루칫코역, 10:00 또는 10:45, 체크인 때 현장 예약)를 이용합니다.</p>
     </div>
 
     <div class="route-list">
@@ -704,11 +705,11 @@
       </div>
       <div class="route-step">
         <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 4l-9 9h4v7h10v-7h4z"/></svg></div>
-        <div class="txt"><b>삿포로 → 오타루</b><span>JR · 12.7(월) · 스스키노 경유(점심: 스미레) · 오후 오타루 시내 관광(르타오) · 숙소 송영버스</span></div>
+        <div class="txt"><b>삿포로 → 오타루</b><span>JR · 12.7(월) · 스스키노 경유(점심: 스미레) · 오후 오타루 시내 관광(르타오) · 택시로 숙소</span></div>
       </div>
       <div class="route-step">
         <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 4l-9 9h4v7h10v-7h4z"/></svg></div>
-        <div class="txt"><b>오타루 → 신치토세</b><span>숙소→오타루역 10:30 송영버스 · JR 직행 · 12.8(화) · 공항에서 점심(부타동 메이진/고주나나반스시/스프카레 GARAKU)</span></div>
+        <div class="txt"><b>오타루 → 신치토세</b><span>숙소→오타루칫코역 송영버스(10:00 또는 10:45) · JR 직행 · 12.8(화) · 공항에서 점심(부타동 메이진/고주나나반스시/스프카레 GARAKU)</span></div>
       </div>
       <div class="route-step">
         <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 16l20-8-8 20-3-8-9-4z"/></svg></div>
@@ -1441,15 +1442,15 @@
         {label:'르타오 본점 (디저트)', place:'北海道小樽市堺町7番16号', exact:true},
         {label:'Otaru Korakuen', place:'Otaru Korakuen, Japan', exact:false}
       ],
-      connectors:[{icon:'transit',text:'지하철 스스키노行'},{icon:'transit',text:'지하철 복귀'},{icon:'transit',text:'지하철 삿포로역行'},{icon:'transit',text:'JR · 약 32분'},{icon:'transit',text:'도보'},{icon:'transit',text:'도보'},{icon:'transit',text:'도보'},{icon:'transit',text:'도보'},{icon:'transit',text:'도보'},{icon:'transit',text:'송영버스'}],
+      connectors:[{icon:'transit',text:'지하철 스스키노行'},{icon:'transit',text:'지하철 복귀'},{icon:'transit',text:'지하철 삿포로역行'},{icon:'transit',text:'JR · 약 32분'},{icon:'transit',text:'도보'},{icon:'transit',text:'도보'},{icon:'transit',text:'도보'},{icon:'transit',text:'도보'},{icon:'transit',text:'도보'},{icon:'transit',text:'택시'}],
       map: mapFrame(['Keikyu EX Hotel Sapporo, Japan','Sapporo Station, Japan','Otaru Station, Japan','Otaru Korakuen, Japan']) },
     { day:'Day 04', date:'12.8(화)', seg:'seg-otaru', stops:[
         {label:'Otaru Korakuen', place:'Otaru Korakuen, Japan', exact:false},
-        {label:'오타루역', place:'Otaru Station, Japan', exact:false},
+        {label:'오타루칫코역', place:'Otaru-Chikko Station, Japan', exact:false},
         {label:'신치토세공항 (로이스 초콜릿월드 · 점심: 부타동메이진·고주나나반스시·GARAKU)', place:'New Chitose Airport, Japan', exact:false}
       ],
-      connectors:[{icon:'transit',text:'택시'},{icon:'transit',text:'JR 직행 · 약 70~80분'}],
-      map: mapFrame(['Otaru Korakuen, Japan','Otaru Station, Japan','New Chitose Airport, Japan']) }
+      connectors:[{icon:'transit',text:'송영버스'},{icon:'transit',text:'JR 직행 · 약 70~80분'}],
+      map: mapFrame(['Otaru Korakuen, Japan','Otaru-Chikko Station, Japan','New Chitose Airport, Japan']) }
   ];
   function mapsLink(place){
     return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(place);
