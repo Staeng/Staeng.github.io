@@ -180,6 +180,14 @@
   .pack-btn + .pack-btn{ margin-top: 8px; }
   .pack-bar i.shop{ background: var(--accent); }
   .pack-item input.shop{ accent-color: var(--accent); }
+  .shop-row{ display: flex; align-items: flex-start; gap: 6px; border-top: 1px solid var(--line); }
+  .shop-row .pack-item{ flex: 1; border-top: none; }
+  .shop-row .pack-item.trashed{ cursor: default; }
+  .shop-row .pack-item.trashed span{ color: var(--ink-faint); }
+  .shop-del, .shop-restore{ flex-shrink: 0; margin-top: 6px; border: 1px solid var(--line); background: none; color: var(--ink-faint); border-radius: 8px; font-family: inherit; font-size: 11px; font-weight: 700; line-height: 1; padding: 6px 8px; cursor: pointer; }
+  .shop-restore{ color: var(--accent); border-color: var(--accent); }
+  .shop-trash-btn{ margin-top: 8px; flex-shrink: 0; border: 1px solid var(--line); background: none; color: var(--ink); border-radius: 999px; font-family: inherit; font-size: 11px; font-weight: 700; padding: 5px 10px; cursor: pointer; white-space: nowrap; }
+  .shop-trash-btn.on{ background: var(--accent); border-color: var(--accent); color: #fff; }
   .pack-progress{ padding: 13px 18px 2px; flex-shrink: 0; }
   .pack-progress span{ font-size: 11.5px; font-weight: 800; color: var(--ink-soft); }
   .pack-bar{ height: 5px; border-radius: 3px; background: var(--line); margin-top: 6px; overflow: hidden; }
@@ -931,6 +939,7 @@
     <div class="pack-progress">
       <span id="shopCount">0 / 0</span>
       <div class="pack-bar"><i class="shop" id="shopBar"></i></div>
+      <button type="button" class="shop-trash-btn" id="shopTrashBtn" onclick="shopToggleTrash()">삭제한 항목 0</button>
     </div>
     <div class="tip-body" id="shopBody"></div>
     <div class="tip-foot"><button onclick="closeShop()">닫기</button></div>
@@ -1721,31 +1730,73 @@
     document.getElementById('shopCount').textContent = done + ' / ' + boxes.length;
     document.getElementById('shopBar').style.width = boxes.length ? (done / boxes.length * 100) + '%' : '0%';
   }
+  const SHOP_DEL_KEY = 'shopdel2026hk';
+  let shopView = { day: null, trash: false };
+  function shopDelLoad(){ try{ return JSON.parse(localStorage.getItem(SHOP_DEL_KEY) || '[]'); }catch(e){ return []; } }
+  function shopDelSave(a){ try{ localStorage.setItem(SHOP_DEL_KEY, JSON.stringify(a)); }catch(e){} }
   function shopRender(filterDay){
+    shopView.day = filterDay || null;
     const done = shopLoad();
+    const del = shopDelLoad();
+    const trash = shopView.trash;
     const list = filterDay ? shopData.filter(function(s){ return s.day === filterDay; }) : shopData;
     let html = '';
-    if (filterDay && !list.length) {
-      html = '<p class="meal-empty">오늘 동선에는 쇼핑 매장이 없어요.</p>';
-    }
+    let shown = 0, delCount = 0;
     list.forEach(store => {
-      html += '<div class="shop-store"><h3 class="shop-store-h">' + store.store + (store.day && !filterDay ? ' <span class="shop-day-badge">' + store.day + '</span>' : '') + '</h3>';
+      let storeHtml = '';
       store.groups.forEach(g => {
-        html += '<div class="shop-cat"><h4 class="shop-cat-h">' + g.cat + '</h4>';
+        let rows = '';
         g.items.forEach(it => {
           const k = packStrip(it);
-          const on = done.indexOf(k) !== -1;
-          html += '<label class="pack-item' + (on ? ' done' : '') + '">' +
-                  '<input type="checkbox" class="shop" data-k="' + k.replace(/"/g, '&quot;') + '"' + (on ? ' checked' : '') + '>' +
-                  '<span>' + it + '</span></label>';
+          const isDel = del.indexOf(k) !== -1;
+          if (isDel) delCount++;
+          if (isDel !== trash) return;
+          const kAttr = k.replace(/"/g, '&quot;');
+          shown++;
+          if (trash) {
+            rows += '<div class="shop-row"><div class="pack-item trashed"><span>' + it + '</span></div>' +
+                    '<button type="button" class="shop-restore" data-k="' + kAttr + '">복구</button></div>';
+          } else {
+            const on = done.indexOf(k) !== -1;
+            rows += '<div class="shop-row"><label class="pack-item' + (on ? ' done' : '') + '">' +
+                    '<input type="checkbox" class="shop" data-k="' + kAttr + '"' + (on ? ' checked' : '') + '>' +
+                    '<span>' + it + '</span></label>' +
+                    '<button type="button" class="shop-del" data-k="' + kAttr + '" aria-label="삭제">삭제</button></div>';
+          }
         });
-        html += '</div>';
+        if (rows) storeHtml += '<div class="shop-cat"><h4 class="shop-cat-h">' + g.cat + '</h4>' + rows + '</div>';
       });
-      html += '</div>';
+      if (storeHtml) html += '<div class="shop-store"><h3 class="shop-store-h">' + store.store + (store.day && !filterDay ? ' <span class="shop-day-badge">' + store.day + '</span>' : '') + '</h3>' + storeHtml + '</div>';
     });
+    if (!shown) {
+      html = '<p class="meal-empty">' + (trash ? '삭제한 항목이 없어요.' : (list.length ? '남은 항목이 없어요.' : '오늘 동선에는 쇼핑 매장이 없어요.')) + '</p>';
+    }
     document.getElementById('shopBody').innerHTML = html;
+    const btn = document.getElementById('shopTrashBtn');
+    btn.textContent = trash ? '목록으로' : '삭제한 항목 ' + delCount;
+    btn.classList.toggle('on', trash);
+    document.getElementById('shopTitle').textContent = (filterDay ? filterDay + ' ' : '') + (trash ? '삭제한 항목' : '쇼핑리스트');
     shopCount();
   }
+  function shopToggleTrash(){
+    shopView.trash = !shopView.trash;
+    const body = document.getElementById('shopBody');
+    shopRender(shopView.day);
+    body.scrollTop = 0;
+  }
+  document.addEventListener('click', function(e){
+    const b = e.target.closest('#shopBody .shop-del, #shopBody .shop-restore');
+    if (!b) return;
+    const k = b.dataset.k;
+    let del = shopDelLoad();
+    if (b.classList.contains('shop-del')) { if (del.indexOf(k) === -1) del.push(k); }
+    else { del = del.filter(function(x){ return x !== k; }); }
+    shopDelSave(del);
+    const body = document.getElementById('shopBody');
+    const top = body.scrollTop;
+    shopRender(shopView.day);
+    body.scrollTop = top;
+  });
   document.addEventListener('change', function(e){
     if (!e.target.matches('#shopBody input[type=checkbox]')) return;
     const k = e.target.dataset.k;
@@ -1757,7 +1808,7 @@
     shopCount();
   });
   function openShop(filterDay){
-    document.getElementById('shopTitle').textContent = filterDay ? filterDay + ' 쇼핑리스트' : '쇼핑리스트';
+    shopView.trash = false;
     shopRender(filterDay);
     document.getElementById('shopModal').classList.add('open');
     document.body.style.overflow = 'hidden';
