@@ -1758,8 +1758,79 @@
   const shopBoth = ['毛穴撫子 お米の', 'fino プレミアムタッチ', 'ウタマロ石鹸', 'メラノCC ディープクリア', 'ビオレ ディープクレイ', 'すっぴんパウダー'];
   function shopBothTag(store, k){ return store.store.indexOf('쓰루하') !== -1 && shopBoth.some(function(s){ return k.indexOf(s) !== -1; }) ? '<em class="shop-both">돈키에도 있음</em>' : ''; }
   function shopBothIns(it, tag){ if (!tag) return it; const i = it.indexOf('<span class="jp">'); return i === -1 ? it + tag : it.slice(0, i) + tag + it.slice(i); }
-  // 상품 사진: 일본어 상품명 일부 → 이미지 경로. 사진이 없으면 팝업에서 이미지 검색 링크만 보여줌
-  const shopImg = {};
+  // 상품 사진: 항목 텍스트(태그 제거) → 이미지 경로. 사진이 없으면 팝업에서 이미지 검색 링크만 보여줌
+  const shopImg = {
+    "스탠다드 프로덕트 가방スタンダードプロダクツ バッグ · ¥1,100": "img/hk-shop/00.jpg",
+    "스탠다드 프로덕트 수세미スタンダードプロダクツ スポンジ · ¥330": "img/hk-shop/01.jpg",
+    "스탠다드 프로덕트 키친나이프 (세키산 스테인리스)スタンダードプロダクツ キッチンナイフ（関製） · ¥1,100": "img/hk-shop/03.jpg",
+    "스탠다드 프로덕트 캐리온 러기지 스트랩スタンダードプロダクツ キャリーケース荷物固定ベルト · ¥330": "img/hk-shop/04.jpg",
+    "몬타베어 가방モンベル モンタベア バッグ · ¥3,300": "img/hk-shop/05.jpg",
+    "지우 로건 부츠 (키즈 13~25cm, 쿠션착화감, 색상 블루그린·라이트그레이 — 화이트는 미확인)モンベル ローガンブーツ Kid's · ¥5,700~": "img/hk-shop/06.jpg",
+    "よつ葉 요츠바 빵에 맛있는 발효버터 100g (냉장)よつ葉 パンにおいしい発酵バター 100g · ¥416": "img/hk-shop/08.jpg",
+    "KALDI 포션 커피 (물·우유에 바로 타는 농축 커피, 10개입)カフェカルディ ポーションコーヒー 無糖 · ¥538": "img/hk-shop/09.jpg",
+    "KALDI 알리오 올리오 페페론치노 파스타소스 (1인분, 미니파우치)アーリオ・オーリオ・エ・ペペロンチーノソース · ¥323~348": "img/hk-shop/10.jpg",
+    "KALDI 세토우치 에비&레몬 파스타소스 (1인분, 미니파우치)瀬戸内海老レモン パスタソース · ¥398~425": "img/hk-shop/11.jpg",
+    "もへじ 모헤지 사라다노 우마타레 (참깨마늘 간장 드레싱, 연간판매 1위)もへじ サラダの旨たれ 290ml · ¥448": "img/hk-shop/12.jpg",
+    "もへじ 모헤지 사케멘타이 스프레드 (연어+명란 페이스트, 밥에 비벼먹기)もへじ さけめんたい 100g · ¥498": "img/hk-shop/13.jpg",
+    "KALDI 테바카라아게 시즈닝 (전자레인지 7분, 닭날개 별도 구입 필요)レンジで手羽唐揚! あらびきペッパー味 30g · ¥289": "img/hk-shop/14.jpg",
+    "GARAKU 가라쿠 치킨 수프카레 밀키트 (가격 미확인)GARAKU 札幌スープカレー チキン": "img/hk-shop/15.jpg",
+    "러쉬(LUSH) 팩ラッシュ フェイスマスク · ¥1,390": "img/hk-shop/17.jpg",
+    "iSDG 아이에스디지 컵라면 마라탕 (고구마당면, 짠맛 강해 국물은 남기는 걸 추천)中華房 麻辣燙 · ¥267": "img/hk-shop/18.jpg",
+    "Pokka Sapporo 포카삿포로 키레토레몬 MUKUMI (부기 경감)キレートレモン MUKUMI · ¥180": "img/hk-shop/19.jpg",
+    "Pokka Sapporo 포카삿포로 키레토레몬 구연산2700 (피로회복, 많이 걸은 날 추천)キレートレモン クエン酸2700 · ¥175": "img/hk-shop/20.jpg",
+    "Lawson 로손 시로이 타이야키 (커스터드, 모찌식감 — 로손 디저트 스테디셀러)白いたい焼き · ¥165": "img/hk-shop/21.jpg",
+    "Lawson 로손 모찌뿌요 (홋카이도산 생크림 밀크크림)もちぷよ · ¥127": "img/hk-shop/22.jpg",
+    "세토우치 레몬맛 오징어튀김과자イカフライ 瀬戸内れもん味 · ¥348": "img/hk-shop/25.jpg",
+    "丸美屋 마루비야 마파두부소스 (발매 55주년, 중간맛)麻婆豆腐の素 · ¥298": "img/hk-shop/27.jpg",
+    "桃屋 모모야 라유 (매콤달콤 먹는 라유, 110g)辛そうで辛くない 少し辛いラー油": "img/hk-shop/28.jpg",
+    "BOURBON 부르봉 파키라 (초코·아몬드 웨이퍼)BOURBON パキーラ · ¥160": "img/hk-shop/30.jpg",
+    "毛穴撫子 케아나 나데시코 모공 숨바꼭질 프라이머毛穴撫子 毛穴かくれんぼプライマー · ¥1,200": "img/hk-shop/34.jpg",
+    "毛穴撫子 케아나 나데시코 쌀 마스크팩 (시트 10매)毛穴撫子 お米のマスク 10枚入": "img/hk-shop/35.jpg",
+    "毛穴撫子 케아나 나데시코 쌀 팩 (씻어내는 타입 170g)毛穴撫子 お米のパック 170g": "img/hk-shop/36.jpg",
+    "ビオレu 비오레 유 더바디 금목서향 (가을 한정 — 있으면)ビオレu ザボディ 金木犀の香り · ¥700": "img/hk-shop/38.jpg",
+    "ANESSA 아네사 퍼펙트 UV 브러쉬온 파우더 Nアネッサ パーフェクトUV ブラッシュオンパウダーN · ¥3,300": "img/hk-shop/39.jpg",
+    "NIVEA 니베아 선 프로텍트 워터젤 SPF50+ニベア サンプロテクトウォータージェル · ¥900": "img/hk-shop/40.jpg",
+    "ビオレ 비오레 클렌징오일ビオレ クレンジングオイル · ¥900": "img/hk-shop/41.jpg",
+    "メンソレータム 멘소래담 립퐁듀メンソレータム リップフォンデュ · ¥700": "img/hk-shop/42.jpg",
+    "Biore 비오레 딥클레이 세안 (모공 각질 전용)ビオレ ディープクレイ洗顔 · ¥600": "img/hk-shop/43.jpg",
+    "ロート製薬 멜라노CC 딥클리어 효소세안제メラノCC ディープクリア酵素洗顔 · ¥980": "img/hk-shop/44.jpg",
+    "club 클럽 쌩얼파우더club すっぴんパウダーC · ¥680": "img/hk-shop/45.jpg",
+    "fino 피노 프리미엄터치 헤어마스크fino プレミアムタッチ 浸透美容液ヘアマスク · ¥780": "img/hk-shop/46.jpg",
+    "大正クイックケア 다이쇼 퀵케어 구내염패치口内炎パッチ 大正クイックケア · ¥700": "img/hk-shop/47.jpg",
+    "ソフィ 소피 금목서향 생리대 (한정 — 있으면)ソフィ 金木犀の香り · ¥400": "img/hk-shop/48.jpg",
+    "ロリエ 로리에 키레이스타일 팬티라이너ロリエ きれいスタイル · ¥350": "img/hk-shop/49.jpg",
+    "ソフィ 소피 키요라 팬티라이너ソフィ Kiyora · ¥400": "img/hk-shop/50.jpg",
+    "小林製薬 고바야시 1방울 소취원 (변기향수)小林製薬 1滴消臭元 · ¥500": "img/hk-shop/51.jpg",
+    "방풍통성산 — 변비·붓기 체질에만 효과, 다이어트약 아님 (코코아포 또는 나이시토르)コッコアポ / ナイシトール（防風通聖散） · ¥2,000": "img/hk-shop/52.jpg",
+    "小林製薬 고바야시 브레스케어小林製薬 ブレスケア · ¥380": "img/hk-shop/53.jpg",
+    "小林製薬 고바야시 씹어먹는 브레스케어 (레몬민트, 마늘요리 후 추천)噛むブレスケア レモンミント · ¥385": "img/hk-shop/54.jpg",
+    "EBiSU 에비스 프리미엄케어 칫솔エビス プレミアムケア歯ブラシ · ¥300~400": "img/hk-shop/55.jpg",
+    "第一三共 다이이치산쿄 록소닌EX 테이프 (어깨·관절 파스, 록소프로펜 성분)ロキソニンEXテープ · ¥1,980": "img/hk-shop/56.jpg",
+    "MegRhythm 메구리즘 다리에 붙이는 탄산 젤팩めぐりズム 足に貼る炭酸ジェルパック · ¥580": "img/hk-shop/57.jpg",
+    "第一三共 다이이치산쿄 트란시노 화이트C 프리미엄 90정 (기미·주근깨, 소용량)トランシーノ ホワイトCプレミアム 90錠 · ¥2,310": "img/hk-shop/58.jpg",
+    "アタックZERO 아타크 제로 퍼펙트스틱 부야오시 (탄산파우더, 실내건조용)アタックZERO パーフェクトスティック 部屋干し · ¥400": "img/hk-shop/59.jpg",
+    "ウタマロ石鹸 우타마로 비누¥150": "img/hk-shop/60.jpg",
+    "LION 라이온 시미토리 레스큐 (휴대용 얼룩제거제)トップ シミとりレスキュー · ¥500": "img/hk-shop/61.jpg",
+    "Laundrin 란도린 사쉐(페이퍼) 방향제ランドリン ペーパーフレグランス · ¥550": "img/hk-shop/62.jpg",
+    "Laundrin 란도린 패브릭 방향제ランドリン ファブリックミスト · ¥600": "img/hk-shop/63.jpg",
+    "Quickle 퀵클 세면대 클리너Quickle 洗面ボウルクリーナー · ¥500": "img/hk-shop/64.jpg",
+    "LEC 激落ちくん 게키오치쿤 트레루프 핸디 먼지떨이激落ちくん トレループ ハンディ · ¥800": "img/hk-shop/65.jpg",
+    "超電水 Clean Shu!Shu! 초덴스이 클린슈슈 전해알칼리세정수 리필 1000ml超電水クリーンシュシュ · ¥600": "img/hk-shop/66.jpg",
+    "Kao 카오 매직클린 오후로니 피타츠 (곰팡이방지)マジックリン お風呂にピタッ · ¥500": "img/hk-shop/67.jpg",
+    "ルックプラス 룩플러스 오후로노 방카비쿤엔자이 (곰팡이훈연제)ルックプラス おふろの防カビくん煙剤 · ¥450": "img/hk-shop/68.jpg",
+    "GARAKU 가라쿠 수프카레 레토르트GARAKU 札幌スープカレー": "img/hk-shop/70.jpg",
+    "YOSHIMI 요시미 삿포로 오카키 오!札幌おかき Oh!焼とうきび": "img/hk-shop/71.jpg",
+    "티라미수 초콜릿 (칼디에도 있음)ティラミスチョコレート · ¥999": "img/hk-shop/72.jpg",
+    "情熱価格 고마닌니쿠 참깨마늘 (연 12만 개 판매 히트상품)ごまにんにく · ¥429": "img/hk-shop/73.jpg",
+    "JONETZ(情熱価格) 구워먹는 고구마 스프레드ぬって焼いたらまるで焼き芋スプレッド · 140g · ¥430": "img/hk-shop/74.jpg",
+    "가미카와 다이세쓰 사케 — 없으면 신치토세공항에서 구매上川大雪": "img/hk-shop/75.jpg",
+    "히비키 위스키 — 없으면 신치토세공항 국제선 면세점響 JAPANESE HARMONY": "img/hk-shop/76.jpg",
+    "아베 사케あべ（阿部酒造）": "img/hk-shop/77.jpg",
+    "카제노모리 사케風の森": "img/hk-shop/78.jpg",
+    "YOSHIMI 요시미 삿포로 오카키 오! 야키토키비 (구운 옥수수맛 쌀과자)札幌おかき Oh!焼とうきび · 6袋 ¥648 / 10袋 ¥1,029": "img/hk-shop/79.jpg",
+    "FamilyMart 수플레 푸딩スフレ・プリン · ¥278": "img/hk-shop/80.jpg",
+    "고구마맛탕大学いも · ¥300": "img/hk-shop/81.jpg"
+    };
   const shopItemMap = {};
   function openShopPhoto(k){
     const it = shopItemMap[k]; if (!it) return;
@@ -1772,7 +1843,7 @@
     const price = m && m[2] ? m[2].trim() : '';
     const name = tmp.textContent.trim();
     let src = '';
-    Object.keys(shopImg).forEach(function(s){ if (k.indexOf(s) !== -1) src = shopImg[s]; });
+    if (shopImg[k]) src = shopImg[k];
     document.getElementById('shopPhotoImg').innerHTML = src ? '<img src="' + src + '" alt="">' : '';
     document.getElementById('shopPhotoName').textContent = name;
     document.getElementById('shopPhotoJp').textContent = jpName;
