@@ -512,7 +512,7 @@
             <li class="cont"><span class="li-time"></span><span class="li-text">아피아(칼디)·스텔라플레이스(시키마르셰·러쉬) 쇼핑</span></li>
             <li><span class="li-time"></span><span class="li-text">몽벨 아카렌가테라스 — 몬타베어 가방</span></li>
             <li><span class="li-time"></span><span class="li-text">숙소 체크인</span></li>
-            <li><span class="li-time"></span><span class="li-text">저녁: 야키니쿠·징기스칸 (스스키노, 후보 5곳 중 선택)</span></li>
+            <li><span class="li-time">20:00</span><span class="li-text">저녁: 화로구이 징기스칸 호르몬풍토 스스키노점 <span class="tag">예약</span></span></li>
             <li><span class="li-time"></span><span class="li-text">디저트: 다누키 코미치 — 멜론</span></li>
           </ul>
           <button class="meal-btn" onclick="openMeal('day1','12.5 (토) · 삿포로')">
@@ -749,7 +749,7 @@
       <div class="cost-row"><div class="cost-label">삿포로맥주박물관<small>전시관 무료입장</small></div><div class="cost-amount muted">-</div></div>
       <div class="cost-row"><div class="cost-label">점심 · 토리톤 스시<small>회전초밥</small></div><div class="cost-amount planned">₩30,000</div></div>
       <div class="cost-row"><div class="cost-label">쇼핑<small>몽벨·칼디·시키 마르셰·러쉬·로손, 리스트 가격 합계 ¥18,140</small></div><div class="cost-amount planned">₩166,000</div></div>
-      <div class="cost-row"><div class="cost-label">저녁 · 야키니쿠·징기스칸<small>스스키노, 후보 5곳 중 선택 (오늘 뭐 먹지 참고)</small></div><div class="cost-amount planned">₩100,000</div></div>
+      <div class="cost-row"><div class="cost-label">저녁 · 호르몬풍토 스스키노점<small>숯불 징기스칸, 20:00 예약 3명, 어림잡은 금액</small></div><div class="cost-amount planned">₩100,000</div></div>
       <div class="cost-row"><div class="cost-label">[지하철] 스스키노 왕복<small>¥3,000 (다회 이용)</small></div><div class="cost-amount paid">₩27,450</div></div>
       <div class="cost-row"><div class="cost-label">숙소 · Keikyu EX Hotel Sapporo<small>2박 · 12/1 자동결제 예정</small></div><div class="cost-amount planned">₩366,080</div></div>
     </div>
@@ -1006,12 +1006,7 @@
   });
 
   const mealData = {
-    day1: { b: "-", l: { name: "토리톤 스시 (북8조광성점)", place: "北海道札幌市東区北8条東5丁目19-1", desc: "인기 회전초밥 · 웨이팅 등록 후 삿포로맥주박물관 관람하며 대기" }, d: [
-      { name: "焼肉グルマンズいとう (야키니쿠 구루만즈 이토우, 소고기 야키니쿠 최고평점)", place: "焼肉グルマンズいとう, Susukino, Sapporo, Japan", url: "https://maps.app.goo.gl/iEYAWTNK5e9ihRzW7?g_st=ic", desc: "구글평점 4.7(리뷰639) · 타베로그 3.78(리뷰370) · 食べログ百名店2026 · ¥10,000~14,999 · 수요일 휴무" },
-      { name: "しろくま 札幌本店 (시로쿠마 삿포로본점, 홋카이도산 양고기)", place: "札幌成吉思汗しろくま 札幌本店, Susukino, Sapporo, Japan", desc: "타베로그 3.68(리뷰1,446) · 국내 소비량 1% 미만 홋카이도산 양고기 사용 · ¥6,000~7,999" },
-      { name: "すすきの焼肉きらく (스스키노 야키니쿠 키라쿠, 고급 야키니쿠)", place: "すすきの焼肉きらく, Sapporo, Japan", desc: "타베로그 3.63(리뷰310) · 食べログ百名店2026 · ¥8,000~9,999" },
-      { name: "らむすけ (라무스케, 징기스칸)", place: "らむすけ, Susukino, Sapporo, Japan", desc: "타베로그 3.62(리뷰246) · 숙성 생라무·마무리 라멘 · ¥4,000~4,999 · 일요일 휴무 · 삿포로 최고 양고기 납품처 사용(메모)" }
-    ] },
+    day1: { b: "-", l: { name: "토리톤 스시 (북8조광성점)", place: "北海道札幌市東区北8条東5丁目19-1", desc: "인기 회전초밥 · 웨이팅 등록 후 삿포로맥주박물관 관람하며 대기" }, d: { name: "화로구이 징기스칸 호르몬풍토 스스키노점 (예약 완료)", place: "화로구이 징기스칸 호르몬풍토 스스키노점, 삿포로", desc: "12/5(토) 20:00 · 3명 · TableCheck 예약 · 숯불 징기스칸" } },
     day2: { b: "호텔 조식", l: { name: "수프카레 트레져 (SOUP CURRY TREASURE)", place: "北海道札幌市中央区南2条西1丁目8番地2 アスカビル1F", desc: "구글평점 4.4 · 오도리·스스키노 일대" }, d: { name: "月島もんじゃ くうや すすきの (츠키시마 몬자 쿠우야 스스키노)", place: "月島もんじゃ くうや すすきの, Susukino, Sapporo, Japan", desc: "구글평점 4.9(리뷰14,684) · 몬자야키 전문점 · 직원이 직접 철판 요리 · ¥2,000~3,000" }, s: [
       { name: "이자카야 一番星(이치반보시) きむら(키무라)", place: "北海道札幌市中央区南6条西3 ススキノ中央ビル9階", desc: "구글평점 4.5 · 스스키노 · 평일 18:00~익일 03:00" },
       { name: "스스키노 니쿠교 로바타 진진(進進)", place: "進進, Susukino, Sapporo, Japan", desc: "食べログ百名店(居酒屋) 2025 · 스스키노 · 해산물+로바타야키 · ¥8,000~9,999 · 점수 미확인" },
@@ -1415,7 +1410,7 @@
         {label:'칼디·시키마르셰·러쉬·로손 (아피아·스텔라플레이스·호텔 1F, 돌아오는 길)', place:'Apia, Sapporo, Japan', exact:false},
         {label:'몽벨 아카렌가테라스 (쇼핑)', place:'Mont-bell Akarenga Terrace, Sapporo, Japan', exact:false},
         {label:'Keikyu EX Hotel Sapporo (체크인)', place:'Keikyu EX Hotel Sapporo, Japan', exact:false},
-        {label:'야키니쿠·징기스칸 (저녁, 스스키노 후보 5곳)', place:'Susukino, Sapporo, Japan', exact:false},
+        {label:'호르몬풍토 스스키노점 (저녁 20:00 예약)', place:'화로구이 징기스칸 호르몬풍토 스스키노점, 삿포로', exact:false},
         {label:'숙소 (복귀)', place:'Keikyu EX Hotel Sapporo, Japan', exact:false}
       ],
       connectors:[{icon:'transit',text:'JR · 약 37분'},{icon:'transit',text:'도보'},{icon:'transit',text:'도보/지하철'},{icon:'transit',text:'도보권'},{icon:'transit',text:'도보'},{icon:'transit',text:'도보/지하철'},{icon:'transit',text:'치카호 지하보도'},{icon:'transit',text:'도보'},{icon:'transit',text:'지하철 스스키노行'},{icon:'transit',text:'지하철 복귀'}],
