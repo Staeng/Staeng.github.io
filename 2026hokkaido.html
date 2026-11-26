@@ -180,6 +180,7 @@
   .pack-btn + .pack-btn{ margin-top: 8px; }
   .pack-bar i.shop{ background: var(--accent); }
   .pack-item input.shop{ accent-color: var(--accent); }
+  .shop-both{ display: inline-block; margin-left: 5px; padding: 1px 6px; border-radius: 999px; font-size: 10px; font-weight: 700; color: var(--accent); border: 1px solid var(--accent); white-space: nowrap; vertical-align: 1px; }
   .shop-row{ display: flex; align-items: flex-start; gap: 6px; border-top: 1px solid var(--line); }
   .shop-row .pack-item{ flex: 1; border-top: none; }
   .shop-row .pack-item.trashed{ cursor: default; }
@@ -1730,6 +1731,10 @@
     document.getElementById('shopCount').textContent = done + ' / ' + boxes.length;
     document.getElementById('shopBar').style.width = boxes.length ? (done / boxes.length * 100) + '%' : '0%';
   }
+  // 쓰루하드럭 품목 중 돈키호테 판매도 확인된 것 (일본어 상품명 일부로 매칭)
+  const shopBoth = ['fino プレミアムタッチ', 'ウタマロ石鹸', 'メラノCC ディープクリア', 'ビオレ ディープクレイ', 'すっぴんパウダー'];
+  function shopBothTag(store, k){ return store.store.indexOf('쓰루하') !== -1 && shopBoth.some(function(s){ return k.indexOf(s) !== -1; }) ? '<em class="shop-both">돈키에도 있음</em>' : ''; }
+  function shopBothIns(it, tag){ if (!tag) return it; const i = it.indexOf('<span class="jp">'); return i === -1 ? it + tag : it.slice(0, i) + tag + it.slice(i); }
   const SHOP_DEL_KEY = 'shopdel2026hk';
   let shopView = { day: null, trash: false };
   function shopDelLoad(){ try{ return JSON.parse(localStorage.getItem(SHOP_DEL_KEY) || '[]'); }catch(e){ return []; } }
@@ -1754,13 +1759,13 @@
           const kAttr = k.replace(/"/g, '&quot;');
           shown++;
           if (trash) {
-            rows += '<div class="shop-row"><div class="pack-item trashed"><span>' + it + '</span></div>' +
+            rows += '<div class="shop-row"><div class="pack-item trashed"><span>' + shopBothIns(it, shopBothTag(store, k)) + '</span></div>' +
                     '<button type="button" class="shop-restore" data-k="' + kAttr + '">복구</button></div>';
           } else {
             const on = done.indexOf(k) !== -1;
             rows += '<div class="shop-row"><label class="pack-item' + (on ? ' done' : '') + '">' +
                     '<input type="checkbox" class="shop" data-k="' + kAttr + '"' + (on ? ' checked' : '') + '>' +
-                    '<span>' + it + '</span></label>' +
+                    '<span>' + shopBothIns(it, shopBothTag(store, k)) + '</span></label>' +
                     '<button type="button" class="shop-del" data-k="' + kAttr + '" aria-label="삭제">삭제</button></div>';
           }
         });
