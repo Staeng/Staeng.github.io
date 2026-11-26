@@ -180,6 +180,18 @@
   .pack-btn + .pack-btn{ margin-top: 8px; }
   .pack-bar i.shop{ background: var(--accent); }
   .pack-item input.shop{ accent-color: var(--accent); }
+  .shop-name{ cursor: pointer; }
+  .shop-photo{ display: none; position: fixed; inset: 0; z-index: 400; background: rgba(15,25,35,0.62); align-items: center; justify-content: center; padding: 20px; }
+  .shop-photo.open{ display: flex; }
+  .shop-photo-card{ width: 100%; max-width: 380px; max-height: 88vh; overflow-y: auto; background: #fff; border-radius: 18px; padding: 16px; box-shadow: 0 18px 48px rgba(0,0,0,0.28); }
+  .shop-photo-card img{ display: block; width: 100%; max-height: 52vh; object-fit: contain; border-radius: 12px; background: #f4f4f2; margin-bottom: 12px; }
+  .sp-name{ font-size: 14px; font-weight: 700; line-height: 1.5; color: var(--ink); }
+  .sp-jp{ margin-top: 8px; font-size: 21px; font-weight: 800; line-height: 1.4; color: var(--ink); word-break: break-all; }
+  .sp-price{ margin-top: 4px; font-size: 13px; font-weight: 700; color: var(--accent); }
+  .sp-actions{ display: flex; gap: 8px; margin-top: 14px; }
+  .sp-actions a, .sp-actions button{ flex: 1; display: block; text-align: center; text-decoration: none; border: none; border-radius: 12px; padding: 12px 8px; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; }
+  .sp-actions a{ background: var(--sapporo); color: #fff; }
+  .sp-actions button{ background: var(--sapporo-soft); color: var(--sapporo); }
   .shop-both{ display: inline-block; margin-left: 5px; padding: 1px 6px; border-radius: 999px; font-size: 10px; font-weight: 700; color: var(--accent); border: 1px solid var(--accent); white-space: nowrap; vertical-align: 1px; }
   .shop-row{ display: flex; align-items: flex-start; gap: 6px; border-top: 1px solid var(--line); }
   .shop-row .pack-item{ flex: 1; border-top: none; }
@@ -948,6 +960,19 @@
   </div>
 </div>
 
+<div class="shop-photo" id="shopPhoto" onclick="if(event.target===this) closeShopPhoto()">
+  <div class="shop-photo-card">
+    <div id="shopPhotoImg"></div>
+    <div class="sp-name" id="shopPhotoName"></div>
+    <div class="sp-jp" id="shopPhotoJp"></div>
+    <div class="sp-price" id="shopPhotoPrice"></div>
+    <div class="sp-actions">
+      <a id="shopPhotoLink" target="_blank" rel="noopener">사진 검색</a>
+      <button type="button" onclick="closeShopPhoto()">닫기</button>
+    </div>
+  </div>
+</div>
+
 <!-- ============ MEAL SLIDE-OVER PAGE ============ -->
 <div class="meal-page" id="mealPage">
   <div class="meal-page-head">
@@ -1596,6 +1621,8 @@
     { store:'🏪 쓰루하드럭 다누키코지 5초메점 (南2条西5丁目) — 스킨케어·뷰티·상비약 · 없으면 사츠도라 5초메점(南3条西5-14, 12:00~23:00)', day:'Day 2', groups:[
       { cat:'스킨케어·뷰티', items:[
         '<b>毛穴撫子 케아나 나데시코</b> 모공 숨바꼭질 프라이머<span class="jp">毛穴撫子 毛穴かくれんぼプライマー · ¥1,200</span>',
+        '<b>毛穴撫子 케아나 나데시코</b> 쌀 마스크팩 (시트 10매)<span class="jp">毛穴撫子 お米のマスク 10枚入</span>',
+        '<b>毛穴撫子 케아나 나데시코</b> 쌀 팩 (씻어내는 타입 170g)<span class="jp">毛穴撫子 お米のパック 170g</span>',
         '<b>カラミ 카라미</b> 메이크업 킵 스퀘어 에어팩 (칼라민 파우더 시트팩)<span class="jp">カラミ メイクキープ スクエアエアパック · ¥600</span>',
         '<b>ビオレu 비오레 유</b> 더바디 금목서향 (가을 한정 — 있으면)<span class="jp">ビオレu ザボディ 金木犀の香り · ¥700</span>',
         '<b>ANESSA 아네사</b> 퍼펙트 UV 브러쉬온 파우더 N<span class="jp">アネッサ パーフェクトUV ブラッシュオンパウダーN · ¥3,300</span>',
@@ -1728,9 +1755,39 @@
     document.getElementById('shopBar').style.width = boxes.length ? (done / boxes.length * 100) + '%' : '0%';
   }
   // 쓰루하드럭 품목 중 돈키호테 판매도 확인된 것 (일본어 상품명 일부로 매칭)
-  const shopBoth = ['fino プレミアムタッチ', 'ウタマロ石鹸', 'メラノCC ディープクリア', 'ビオレ ディープクレイ', 'すっぴんパウダー'];
+  const shopBoth = ['毛穴撫子 お米の', 'fino プレミアムタッチ', 'ウタマロ石鹸', 'メラノCC ディープクリア', 'ビオレ ディープクレイ', 'すっぴんパウダー'];
   function shopBothTag(store, k){ return store.store.indexOf('쓰루하') !== -1 && shopBoth.some(function(s){ return k.indexOf(s) !== -1; }) ? '<em class="shop-both">돈키에도 있음</em>' : ''; }
   function shopBothIns(it, tag){ if (!tag) return it; const i = it.indexOf('<span class="jp">'); return i === -1 ? it + tag : it.slice(0, i) + tag + it.slice(i); }
+  // 상품 사진: 일본어 상품명 일부 → 이미지 경로. 사진이 없으면 팝업에서 이미지 검색 링크만 보여줌
+  const shopImg = {};
+  const shopItemMap = {};
+  function openShopPhoto(k){
+    const it = shopItemMap[k]; if (!it) return;
+    const tmp = document.createElement('div'); tmp.innerHTML = it;
+    const jpEl = tmp.querySelector('.jp');
+    const jpFull = jpEl ? jpEl.textContent.trim() : '';
+    if (jpEl) jpEl.remove();
+    const m = jpFull.match(/^(.*?)(?:\s*·\s*)?((?:[^·]*\s)?¥[\d,~]+.*)?$/);
+    const jpName = (m && m[1] ? m[1] : jpFull).replace(/\s*·\s*$/, '').trim();
+    const price = m && m[2] ? m[2].trim() : '';
+    const name = tmp.textContent.trim();
+    let src = '';
+    Object.keys(shopImg).forEach(function(s){ if (k.indexOf(s) !== -1) src = shopImg[s]; });
+    document.getElementById('shopPhotoImg').innerHTML = src ? '<img src="' + src + '" alt="">' : '';
+    document.getElementById('shopPhotoName').textContent = name;
+    document.getElementById('shopPhotoJp').textContent = jpName;
+    document.getElementById('shopPhotoPrice').textContent = price;
+    const q = jpName || name;
+    const a = document.getElementById('shopPhotoLink');
+    a.href = 'https://www.google.com/search?tbm=isch&q=' + encodeURIComponent(q);
+    a.textContent = src ? '사진 더 보기 (구글)' : '사진 보기 (구글 이미지)';
+    document.getElementById('shopPhoto').classList.add('open');
+  }
+  function closeShopPhoto(){ document.getElementById('shopPhoto').classList.remove('open'); }
+  document.addEventListener('click', function(e){
+    const n = e.target.closest('#shopBody .shop-name');
+    if (n) openShopPhoto(n.dataset.k);
+  });
   const SHOP_DEL_KEY = 'shopdel2026hk';
   let shopView = { day: null, trash: false };
   function shopDelLoad(){ try{ return JSON.parse(localStorage.getItem(SHOP_DEL_KEY) || '[]'); }catch(e){ return []; } }
@@ -1759,9 +1816,10 @@
                     '<button type="button" class="shop-restore" data-k="' + kAttr + '">복구</button></div>';
           } else {
             const on = done.indexOf(k) !== -1;
-            rows += '<div class="shop-row"><label class="pack-item' + (on ? ' done' : '') + '">' +
+            shopItemMap[k] = it;
+            rows += '<div class="shop-row"><div class="pack-item' + (on ? ' done' : '') + '">' +
                     '<input type="checkbox" class="shop" data-k="' + kAttr + '"' + (on ? ' checked' : '') + '>' +
-                    '<span>' + shopBothIns(it, shopBothTag(store, k)) + '</span></label>' +
+                    '<span class="shop-name" data-k="' + kAttr + '">' + shopBothIns(it, shopBothTag(store, k)) + '</span></div>' +
                     '<button type="button" class="shop-del" data-k="' + kAttr + '" aria-label="삭제">삭제</button></div>';
           }
         });
