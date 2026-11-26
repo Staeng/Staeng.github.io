@@ -1696,7 +1696,8 @@
     ]},
     { store:'✈️ 신치토세공항 (ANA FESTA 로비점·7번·9번 게이트점, JAL PLAZA)', day:'Day 4', groups:[
       { cat:'기념품 과자', items:[
-        '<b>YOSHIMI 요시미</b> 삿포로 오카키 오! 야키토키비 (구운 옥수수맛 쌀과자)<span class="jp">札幌おかき Oh!焼とうきび · 6袋 ¥648 / 10袋 ¥1,029</span>'
+        '<b>YOSHIMI 요시미</b> 삿포로 오카키 오! 야키토키비 (구운 옥수수맛 쌀과자)<span class="jp">札幌おかき Oh!焼とうきび · 6袋 ¥648 / 10袋 ¥1,029</span>',
+        '<b>YOSHIMI 요시미</b> 삿포로 오카키 오! 자가이모 (감자맛 쌀과자)<span class="jp">札幌おかき Oh!じゃがいも</span>'
       ]}
     ]},
     { store:'🏪 패밀리마트 (아무 지점)', day:'상시', groups:[
@@ -1765,6 +1766,10 @@
   function shopBothIns(it, tag){ if (!tag) return it; const i = it.indexOf('<span class="jp">'); return i === -1 ? it + tag : it.slice(0, i) + tag + it.slice(i); }
   // 상품 사진: 항목 텍스트(태그 제거) → 이미지 경로. 사진이 없으면 팝업에서 이미지 검색 링크만 보여줌
   const shopImg = {
+    "すみれ 스미레 미소라멘 (삿포로 슈퍼 판매 확인)すみれ 味噌ラーメン 生": "img/hk-shop/92.jpg",
+    "すみれ 스미레 등 라멘 밀키트すみれ 味噌ラーメン（西山製麺）": "img/hk-shop/92.jpg",
+    "GARAKU 가라쿠 폭(돼지고기) 수프카레 밀키트GARAKU 札幌スープカレー 豚角煮 · ¥998": "img/hk-shop/93.jpg",
+    "YOSHIMI 요시미 삿포로 오카키 오! 자가이모 (감자맛 쌀과자)札幌おかき Oh!じゃがいも": "img/hk-shop/94.jpg",
     "구경 (모자 등)ヒューマンメイド キャップ · ¥6,000~9,000": "img/hk-shop/90.jpg",
     "チョコっと 쵸콧토 야키이모 쫀득 고구마 (전자레인지용)ちょこっと焼き芋 · ¥500": "img/hk-shop/91.jpg",
     "스탠다드 프로덕트 가방スタンダードプロダクツ バッグ · ¥1,100": "img/hk-shop/00.jpg",
