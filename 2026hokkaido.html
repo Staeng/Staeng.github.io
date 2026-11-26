@@ -530,6 +530,7 @@
             <li class="cont"><span class="li-time"></span><span class="li-text">숙소에서 휴식·낮잠 (저녁 전까지)</span></li>
             <li><span class="li-time"></span><span class="li-text">다누키 코미치 — 유바리 멜론 (저녁 가는 길에)</span></li>
             <li><span class="li-time">17:30</span><span class="li-text">또는 20:00 저녁: 화로구이 징기스칸 호르몬풍토 스스키노점 <span class="tag">예약 2건</span></span></li>
+            <li class="cont"><span class="li-time"></span><span class="li-text">또는 츠키시마 몬자 쿠우야 (코코노 스스키노 4F, 예약 불가·줄서기) — 이 경우 야키니쿠는 Day 2 18:30</span></li>
             <li class="note cont"><span class="li-time"></span><span class="li-text">안 쓰는 예약은 취소 (17:30·20:00, Day 2 18:30)</span></li>
           </ul>
           <button class="meal-btn" onclick="openMeal('day1','12.5 (토) · 삿포로')">
@@ -1044,7 +1045,7 @@
   });
 
   const mealData = {
-    day1: { b: "-", l: { name: "토리톤 스시 (북8조광성점)", place: "北海道札幌市東区北8条東5丁目19-1", desc: "인기 회전초밥 · 웨이팅 등록 후 삿포로맥주박물관 관람하며 대기" }, d: { name: "화로구이 징기스칸 호르몬풍토 스스키노점 (예약 완료)", place: "화로구이 징기스칸 호르몬풍토 스스키노점, 삿포로", desc: "12/5(토) 17:30·20:00 두 건 예약(하나 취소) · 3명 · TableCheck · 숯불 징기스칸" } },
+    day1: { b: "-", l: { name: "토리톤 스시 (북8조광성점)", place: "北海道札幌市東区北8条東5丁目19-1", desc: "인기 회전초밥 · 웨이팅 등록 후 삿포로맥주박물관 관람하며 대기" }, d: [ { name: "화로구이 징기스칸 호르몬풍토 스스키노점 (예약 완료)", place: "화로구이 징기스칸 호르몬풍토 스스키노점, 삿포로", desc: "12/5(토) 17:30·20:00 두 건 예약(하나 취소) · 3명 · TableCheck · 숯불 징기스칸" }, { name: "月島もんじゃ くうや すすきの (츠키시마 몬자 쿠우야 — 야키니쿠 대신 갈 경우)", place: "月島もんじゃ くうや すすきの, Susukino, Sapporo, Japan", desc: "코코노 스스키노 4F · 예약 불가, 줄서기 · 이 경우 야키니쿠는 Day 2 18:30 예약 사용" } ] },
     day2: { b: "호텔 조식", l: { name: "수프카레 트레져 (SOUP CURRY TREASURE)", place: "北海道札幌市中央区南2条西1丁目8番地2 アスカビル1F", desc: "구글평점 4.4 · 오도리·스스키노 일대" }, d: [ { name: "月島もんじゃ くうや すすきの (츠키시마 몬자 쿠우야 스스키노)", place: "月島もんじゃ くうや すすきの, Susukino, Sapporo, Japan", desc: "구글평점 4.9(리뷰14,684) · 몬자야키 전문점 · 직원이 직접 철판 요리 · ¥2,000~3,000" }, { name: "화로구이 징기스칸 호르몬풍토 스스키노점 (Day 1에 몬자를 먹었으면)", place: "화로구이 징기스칸 호르몬풍토 스스키노점, 삿포로", desc: "12/6(일) 18:30 예약 · 3명 · 무료 취소" } ], s: [
       { name: "이자카야 一番星(이치반보시) きむら(키무라)", place: "北海道札幌市中央区南6条西3 ススキノ中央ビル9階", desc: "구글평점 4.5 · 스스키노 · 평일 18:00~익일 03:00" },
       { name: "스스키노 니쿠교 로바타 진진(進進)", place: "進進, Susukino, Sapporo, Japan", desc: "食べログ百名店(居酒屋) 2025 · 스스키노 · 해산물+로바타야키 · ¥8,000~9,999 · 점수 미확인" },
