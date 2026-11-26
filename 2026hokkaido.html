@@ -1679,7 +1679,8 @@
     ]},
     { store:'🎌 MEGA 돈키호테 삿포로 다누키코지 본점 (南3条西4丁目 · 24시간)', day:'Day 2', groups:[
       { cat:'과자', items:[
-        '티라미수 초콜릿 (칼디에도 있음)<span class="jp">ティラミスチョコレート · ¥999</span>'
+        '티라미수 초콜릿 (칼디에도 있음)<span class="jp">ティラミスチョコレート · ¥999</span>',
+        '<b>やおきん 야오킨</b> 우마이봉 초코맛<span class="jp">うまい棒 チョコレート</span>'
       ]},
       { cat:'돈키 PB', items:[
         '<b>情熱価格</b> 고마닌니쿠 참깨마늘 (연 12만 개 판매 히트상품)<span class="jp">ごまにんにく · ¥429</span>',
@@ -1707,8 +1708,7 @@
     ]},
     { store:'🏪 세븐일레븐 (아무 지점)', day:'상시', groups:[
       { cat:'간식', items:[
-        '고구마맛탕<span class="jp">大学いも · ¥300</span>',
-        '농후 크리미 콘포타주 스낵<span class="jp">濃厚クリーミー コーンポタージュスナック</span>'
+        '고구마맛탕<span class="jp">大学いも · ¥300</span>'
       ]}
     ]}
   ];
@@ -1766,6 +1766,7 @@
   function shopBothIns(it, tag){ if (!tag) return it; const i = it.indexOf('<span class="jp">'); return i === -1 ? it + tag : it.slice(0, i) + tag + it.slice(i); }
   // 상품 사진: 항목 텍스트(태그 제거) → 이미지 경로. 사진이 없으면 팝업에서 이미지 검색 링크만 보여줌
   const shopImg = {
+    "やおきん 야오킨 우마이봉 초코맛うまい棒 チョコレート": "img/hk-shop/95.jpg",
     "すみれ 스미레 미소라멘 (삿포로 슈퍼 판매 확인)すみれ 味噌ラーメン 生": "img/hk-shop/92.jpg",
     "すみれ 스미레 등 라멘 밀키트すみれ 味噌ラーメン（西山製麺）": "img/hk-shop/92.jpg",
     "GARAKU 가라쿠 폭(돼지고기) 수프카레 밀키트GARAKU 札幌スープカレー 豚角煮 · ¥998": "img/hk-shop/93.jpg",
